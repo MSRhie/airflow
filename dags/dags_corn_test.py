@@ -7,7 +7,7 @@ from airflow.providers.standard.operators.empty import EmptyOperator
 with DAG(
     dag_id="dags_corn_test",
     schedule=None,
-    start_date=pendulum.datetime(2025, 1, 1, tz="Asia/Seoul"),
+    start_date=pendulum.datetime(2025, 27, 10, tz="Asia/Seoul"),
     catchup=False
 ) as dag:
     t1 = EmptyOperator(

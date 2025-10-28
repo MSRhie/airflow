@@ -24,7 +24,7 @@ from __future__ import annotations
 import pendulum
 
 from airflow.providers.standard.operators.bash import BashOperator
-from airflow.sdk import DAG, chain
+from airflow.sdk import DAG
 
 with DAG(
     # hostlocal 의 DAGS에 보이는 이름, 파이썬파일명과는 관련없음, 단 파일명과 일치시키는게 좋음(파일들이 많아지므로)
