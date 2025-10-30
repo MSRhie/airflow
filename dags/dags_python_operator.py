@@ -2,6 +2,7 @@ import pendulum
 # Airflow 3.0 부터 아래 경로로 import 합니다.
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.python import PythonOperator
+
 import random
 
 with DAG(
