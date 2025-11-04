@@ -12,8 +12,8 @@ with DAG(
     bash_task_1 = BashOperator(
         task_id='bash_task_1',
         env={
-            "START_DATE": "{{ data_interval_start.in_timezone('Asia/Seoul') | ds }}", # 서울시간으로 바꾸고, yyy-dd-mm 포맷으로 변경(ds 필터 사용)
-            "END_DATE": "{{ (data_interval_start.in_timezone('Asia/Seoul') - macros.dateutil.relativedelta(days=1)) | ds }}"
+            "START_DATE": "{{ data_interval_start.in_timezone('Asia/Seoul').format('YYYY-MM-DD') }}", # 서울시간으로 바꾸고, yyy-dd-mm 포맷으로 변경(ds 필터 사용)
+            "END_DATE": "{{ (data_interval_end.in_timezone('Asia/Seoul') - macros.relativedelta(days=1)).format('YYYY-MM-DD') }}"
         },
         bash_command='echo "START_DATE is $START_DATE , END_DATE is $END_DATE "'
     )
