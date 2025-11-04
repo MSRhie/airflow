@@ -1,10 +1,11 @@
 from airflow.sdk import DAG
 import pendulum
 from airflow.providers.standard.operators.bash import BashOperator
+from airflow.timetables.trigger import CronTriggerTimetable
 
 with DAG(
     dag_id="dags_bash_with_macro_eg1",
-    schedule="10 0 L * * ", # 매월 말일 00시 10분에 실행
+    schedule=CronTriggerTimetable("10 0 L * * "),    
     start_date=pendulum.datetime(2023, 3, 1, tz="Asia/Seoul"),
     catchup=False
 ) as dag:
