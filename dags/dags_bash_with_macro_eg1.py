@@ -5,7 +5,7 @@ from airflow.timetables.trigger import CronTriggerTimetable
 
 with DAG(
     dag_id="dags_bash_with_macro_eg1",
-    schedule=CronTriggerTimetable("10 0 L * * "),    
+    schedule=CronTriggerTimetable("10 0 L * * ", timezone="Asia/Seoul"), # 매월 말일 00시 10분에 실행
     start_date=pendulum.datetime(2023, 3, 1, tz="Asia/Seoul"),
     catchup=False
 ) as dag:
