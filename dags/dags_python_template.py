@@ -11,14 +11,14 @@ with DAG(
     catchup=False
 ) as dag:
     def python_function1(start_date, end_date, **kwargs):
-            print(start_date)
-            print(end_date)
+        print(start_date)
+        print(end_date)
 
     # 1. jinja 템플릿 변수를 직접 넣어서 변환되는 과정을 보는 방법
     python_t1 = PythonOperator(
             task_id='python_t1',
             python_callable=python_function1,
-            op_kwargs={'start_date': '{{date_interval_start | ds}}', 'end_date': '{{date_interval_end | ds}}' }
+            op_kwargs={'start_date': '{{data_interval_start | ds}}', 'end_date': '{{data_interval_end | ds}}' }
     )
 
     # 2. kwargs 에 우리가 사용할 수 있는 템플릿 변수들이 있으니까 꺼내 쓰자
