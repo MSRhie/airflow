@@ -24,7 +24,8 @@ with DAG(
 
     send_email = EmailOperator(
         task_id='send_email',
-        to='stat_12@naver.com',
+        conn_id='conn_smtp_gmail',      # Airflow 3.0 실습부터 추가 # localhost:8080 에서 smtp 연결 설정 필요
+        to='nanki1004@gmail.com',       # 본인의 메일 계정으로 변경해주세요.
         subject='{{ data_interval_end.in_timezone("Asia/Seoul") | ds }} some_logic 처리결과',
         html_content='{{ data_interval_end.in_timezone("Asia/Seoul") | ds }} 처리 결과는 <br> \
                     {{ti.xcom_pull(task_ids="something_task")}} 했습니다 <br>'

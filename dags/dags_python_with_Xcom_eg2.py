@@ -29,6 +29,7 @@ with DAG(
         print('함수 입력값으로 받은 값: ' + status)
 
     # python_xcom_push_by_return 자체는 에어플로우 task 객체임. 단순히 "리턴 결과 : Success"만 가지고있지 않음
+    # 따라서 에어플로우가 알아서 Task들 간의 관계를 그리게 됨. 굉장히 유용한팁
     python_xcom_push_by_return = xcom_push_result()
     # status 매개변수에 python_xcom_push_by_return의 리턴값을 넣어줌
     # xcom_push_result 함수 이후 xcom_pull_1, xcom_pull_2가 병렬로 실행됨
