@@ -15,7 +15,7 @@ with DAG(
     var_value = Variable.get("sample_key")
     bash_var_1 = BashOperator(
         task_id="bash_var_1",
-        bash_command=f"eho variable: {var_value}"
+        bash_command=f"echo variable: {var_value}"
     )
 
     # 두번째 방법 #
