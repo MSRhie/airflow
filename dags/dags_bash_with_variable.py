@@ -7,7 +7,7 @@ from airflow.models.variable import Variable
 with DAG(
     dag_id="dags_bash_with_variable",
     schedule=None,
-    start_date=pendulum.datetime(2023, 4, 1, timezone="Asia/Seoul"),
+    start_date=pendulum.datetime(2023, 4, 1, tz="Asia/Seoul"),
     catchup=False
 ) as dag:
     
