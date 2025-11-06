@@ -11,6 +11,7 @@ with DAG(
     catchup=False
 ) as dag:
     
+    
     def select_random():
         import random
 
@@ -21,10 +22,10 @@ with DAG(
         elif selected_item in ['B', 'C']:
             return ['task_b', 'task_c']
         
+    # 1. BranchPythonOperator 이용
     python_branch_task = BranchPythonOperator(
         task_id='python_branch_task',
         python_callable=select_random,
-
     )
 
     def common_func(**kwargs):
