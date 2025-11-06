@@ -15,20 +15,21 @@ with DAG(
     schedule=None,
     catchup=False
 ) as dag:
+    # upstream 1 - bash_upstream_1
     bash_upstream_1 = BashOperator(
         task_id='bash_upstream_1',
         bash_command='echo upstream1'
     )
-
+    # upstream 2 - python_upstream_1
     @task(task_id='python_upstream_1')
     def python_upstream_1():
         raise AirflowException('downstream_1 Exception!')
 
-
+    # upstream 3 - python_upstream_2
     @task(task_id='python_upstream_2')
     def python_upstream_2():
         print('정상 처리')
-
+    # downstream 1 - python_downstream_1
     @task(task_id='python_downstream_1', trigger_rule='all_done')
     def python_downstream_1():
         print('정상 처리')
