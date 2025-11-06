@@ -33,13 +33,13 @@ with DAG(
     task_a = PythonOperator(
         task_id='task_a',
         python_callable=common_func,
-        op_kwargs=['selected': 'A']
+        op_kwargs={'selected': 'A'}
     )
 
     task_b = PythonOperator(
         task_id='task_b',
         python_callable=common_func,
-        op_kwargs=['selected': 'B']
+        op_kwargs={'selected': 'B'}
     )
 
     task_c = PythonOperator(
