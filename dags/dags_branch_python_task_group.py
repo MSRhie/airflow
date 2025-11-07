@@ -18,9 +18,9 @@ with DAG(
         item_list = ['A', 'B', 'C']
         selected_item = random.choice(item_list)
         if selected_item == 'A':
-            return 'task_a'
+            return 'first_group.task_a'
         elif selected_item in ['B', 'C']:
-            return ['task_b', 'task_c']
+            return ['second_group.task_b', 'second_group.task_c']
 
     def common_func(**kwargs):
         print(kwargs['selected'])
