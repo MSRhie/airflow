@@ -16,9 +16,9 @@ with DAG(
     )
     # 이전에 사용했던 dags_python_operator DAG 사용 #
     trigger_dag_task = TriggerDagRunOperator(
-        task_id='trigger_dag_task',
-        trigger_dag_id='dags_python_operator',
-        trigger_run_id=None,
+        task_id='trigger_dag_task', # 필수값 : 이 오퍼레이터 이름 
+        trigger_dag_id='dags_python_operator', #필수값 : 어떤 DAG을 실행시킬지
+        trigger_run_id=None, # Dag 수행방식과 시간을 유일하게 식별해주는 키(Schedule, manual, Backfill)
         logical_date='{{data_interval_start}}',
         reset_dag_run=True,
         wait_for_completion=False,
