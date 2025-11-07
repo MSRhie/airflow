@@ -21,7 +21,7 @@ with DAG(
     tb_subway_station_info = HttpOperator(
         task_id='tb_subway_station_info',
         http_conn_id='seoul_Rest_API',
-        endpoint='{{var.value.apikey_swopenapi_go_kr}}/json/realtimeStationArrival/0/5/서울/',
+        endpoint='{{var.value.apikey_swopenapi_go_kr}}/json/CardSubwayStatsNew/0/5/20251101/',
         method='GET',
         headers={'Content-Type': 'application/json',
                         'charset': 'utf-8',
