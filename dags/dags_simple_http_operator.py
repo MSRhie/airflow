@@ -20,8 +20,8 @@ with DAG(
     # HttpOperator로 작성해주세요.
     tb_subway_station_info = HttpOperator(
         task_id='tb_subway_station_info',
-        http_conn_id='swopenapi.seoul.go.kr/',
-        endpoint='{{var.value.apikey_swopenapi_go_kr}}/json/subwayId/1/10/',
+        http_conn_id='swopenapi.seoul.go.kr/api/subway',
+        endpoint='{{var.value.apikey_swopenapi_go_kr}}/json/realtimeStationArrival/0/5/서울/',
         method='GET',
         headers={'Content-Type': 'application/json',
                         'charset': 'utf-8',
