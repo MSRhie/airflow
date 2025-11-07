@@ -21,7 +21,6 @@ with DAG(
         from random import choice 
         return choice(['Success','Fail'])
 
-
     send_email = EmailOperator(
         task_id='send_email',
         conn_id='conn_smtp_gmail',      # Airflow 3.0 실습부터 추가 # localhost:8080 에서 smtp 연결 설정 필요
