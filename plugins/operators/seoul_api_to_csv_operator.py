@@ -4,9 +4,9 @@ from airflow.models import BaseOperator
 
 class SeoulApiToCsvOperator(BaseOperator):
     """
-    **kwarge에 기존 jinja 템플릿 파라미터 + template_fild 파라미터를 추가시킴
+    **kwargs에 기존 jinja 템플릿 파라미터 + template_files 파라미터를 추가시킴
     """
-    template_filed = ('endpoint', 'path', 'file_name', 'base_dt')
+    template_files = ('endpoint', 'path', 'file_name', 'base_dt')
 
     def __init__(self, dataset_nm, path, file_name, base_dt=None, **kwargs):
         """
@@ -55,25 +55,25 @@ class SeoulApiToCsvOperator(BaseOperator):
         
         total_row_df.to_csv(self.path + '/' + self.file_name, encoding='utf-8', index=False)
 
-        def _call_api(self, base_url, start_row, end_row):
-            import requests
-            import json
+    def _call_api(self, base_url, start_row, end_row):
+        import requests
+        import json
 
-            headers = {'Content-Type': 'application/json',
-                        'charset': 'utf-8',
-                        'Accept': '*/*'}
+        headers = {'Content-Type': 'application/json',
+                    'charset': 'utf-8',
+                    'Accept': '*/*'}
 
+        request_url = f'{base_url}/{start_row}/{end_row}/{self.base_dt}'
+
+        if self.base_dt is not None:
             request_url = f'{base_url}/{start_row}/{end_row}/{self.base_dt}'
+        response = requests.get(request_url, headers=headers) # string 형태로 response에 저장됨
+        contents = json.loads(response.text) # 딕셔너리 형태로 contents 로 로드
 
-            if self.base_dt is not None:
-                request_url = f'{base_url}/{start_row}/{end_row}/{self.base_dt}'
-            response = requests.get(request_url, headers) # string 형태로 response에 저장됨
-            contents = json.loads(response.text) # 딕셔너리 형태로 contents 로 로드
+        key_nm = list(contents.keys())[0]
+        row_data = contents.get(key_nm).get('row') # contents에서 key가 key_nm 인 값을 가져오고, 그값에서 또 key가 row인 값들을 가져와라
+        row_df = pd.DataFrame(row_data)
 
-            key_nm = list(contents.key())[0]
-            row_data = contents.get(key_nm).get('row') # contents에서 key가 key_nm 인 값을 가져오고, 그값에서 또 key가 row인 값들을 가져와라
-            row_df = pd.DataFrame(row_data)
-
-            return row_df
+        return row_df
         
 
